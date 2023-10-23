@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row mb-4">
+        <h1>MENU</h1>
+        <button type="button" class="btn btn-primary" (click)="addDish()">Agregar</button>
+    </div>
+    <div *ngFor="let dish of dishes | async">
+        <div class="row mb-2">
+            <div class="col-3">
+                <img src="{{dish.imgURL}}" alt="">
+            </div>
+            <div class="col-3">
+                <span> {{dish.description}} </span>
+            </div>
+            <button type="button" class="btn btn-warning mr-2" (click)="updateDish(dish)">Editar</button>
+            <button type="button" class="btn btn-danger"(click)="deleteDish(dish)">Eliminar</button>
+        </div>
+    </div>
+</div>
