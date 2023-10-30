@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { DishFormModalComponent } from './components/dish-form-modal/dish-form-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+const swal = require('sweetalert2');
 
 @Component({
   selector: 'app-home',
@@ -9,9 +11,11 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 })
 export class HomeComponent implements OnInit {
   dishes: any;
+  showModal: boolean = false;
 
   constructor(
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private dialog: MatDialog
   ) {
 
   }
@@ -20,21 +24,54 @@ export class HomeComponent implements OnInit {
     this.dishes = this.firestoreService.getDishes();
   }
 
-  addDish() {
-    //TODO: modal para agregar plato
-    let dish = {};
-    this.firestoreService.createDish(dish);
+  addDish(): void {
+    const dialogRef = this.dialog.open(DishFormModalComponent, {
+      width: '400px',
+      data: {
+        data: null,
+        callback: (data: any) => this.createDish(data)
+      },
+      disableClose: true
+    });
   }
 
-  updateDish(dish: any) {
-    this.firestoreService.updateDish(dish);
+  createDish(dish: any): void {
+    //this.firestoreService.createDish(dish);
   }
 
-  deleteDish(dish: any) {
-    this.firestoreService.deleteDish(dish);
+  updateDish(dish: any): void {
+    const dialogRef = this.dialog.open(DishFormModalComponent, {
+      width: '400px',
+      data: {
+        data: dish,
+        callback: (data: any) => this.updateserviceDish(dish)
+      },
+      disableClose: true
+    });
   }
 
-  
+  updateserviceDish(dish: any): void {
+    //this.firestoreService.updateDish(dish);
+  }
 
+  deleteDish(dish: any): void {
+    swal.fire({
+      title: "¿Está seguro?",
+      text: "¿Está seguro que desea eliminar el plato seleccionado?",
+      icon: "warning",
+      dangerMode: true,
+      showCancelButton: true,
+      cancelButtonText: "Cancelar"
+    })
+    .then((data: boolean) => {
+      if (data) {
+        this.deleteDishCallback(dish);
+      }
+    });
+  }
+
+  deleteDishCallback(dish: any) {
+    //this.firestoreService.deleteDish(dish);
+  }
 
 }
