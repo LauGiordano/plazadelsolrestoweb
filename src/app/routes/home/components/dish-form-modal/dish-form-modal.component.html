@@ -1,0 +1,54 @@
+<h2 mat-dialog-title class="mb-3 modal-title">{{ !!dataModel && !!dataModel.data ? 'Editar plato' : 'Nuevo plato'}}</h2>
+<div mat-dialog-content>
+  <form
+    *ngIf="dishForm"
+    class="form-container"
+    novalidate
+    [formGroup]="dishForm"
+  >
+      <div class="form-row">
+        <div class="col-9">
+          <label>Nombre</label>
+          <input
+            [attr.disabled]="!!dataModel && dataModel.data ? true : null"
+            class="form-control"
+            type="text"
+            formControlName="name"
+          />
+          <div class="invalid-feedback">Ingrese un nombre</div>
+        </div>
+      </div>
+      <div class="form-row mt-3">
+        <div class="col-9">
+          <label>Descripción</label>
+          <input
+            [attr.disabled]="!!dataModel && dataModel.data ? true : null"
+            class="form-control"
+            type="text"
+            formControlName="description"
+          />
+          <div class="invalid-feedback">Ingrese una descripción</div>
+        </div>
+      </div>
+      <div class="form-row mt-3">
+        <div class="col-9">
+          <label>Precio</label>
+          <input
+            [attr.disabled]="!!dataModel && dataModel.data ? true : null"
+            class="form-control"
+            type="text"
+            formControlName="price"
+          />
+          <div class="invalid-feedback">Ingrese un precio</div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mt-2" mat-dialog-actions>
+        <button class="mr-1 btn btn-secondary" (click)="cancelDialog()">
+          Cancelar
+        </button>
+        <button (click)="submit()" type="button" class="btn btn-primary">
+          Aceptar
+        </button>
+      </div>
+  </form>
+</div>
