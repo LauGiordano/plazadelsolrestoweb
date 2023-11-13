@@ -10,7 +10,7 @@
         <div class="col-9">
           <label>Nombre</label>
           <input
-            [attr.disabled]="!!dataModel && dataModel.data ? true : null"
+            [readonly]="!!dataModel && !!dataModel.data ? true : null"
             class="form-control"
             type="text"
             formControlName="name"
@@ -22,7 +22,7 @@
         <div class="col-9">
           <label>Descripción</label>
           <input
-            [attr.disabled]="!!dataModel && dataModel.data ? true : null"
+            [readonly]="!!dataModel && !!dataModel.data ? true : null"
             class="form-control"
             type="text"
             formControlName="description"
@@ -34,12 +34,23 @@
         <div class="col-9">
           <label>Precio</label>
           <input
-            [attr.disabled]="!!dataModel && dataModel.data ? true : null"
             class="form-control"
-            type="text"
+            type="number"
             formControlName="price"
           />
           <div class="invalid-feedback">Ingrese un precio</div>
+        </div>
+      </div>
+      <div class="form-row mt-3">
+        <div class="col-9">
+          <label>Imagen</label>
+          <input
+            [readonly]="!!dataModel && !!dataModel.data ? true : null"
+            class="form-control"
+            type="text"
+            formControlName="imgURL"
+          />
+          <div class="invalid-feedback">Ingrese una imagen</div>
         </div>
       </div>
       <div class="d-flex justify-content-end mt-2" mat-dialog-actions>
