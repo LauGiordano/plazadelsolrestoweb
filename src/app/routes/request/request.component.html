@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row mb-4 d-flex">
+        <h1>PEDIDOS</h1>
+    </div>
+    <div *ngFor="let request of requests | async">
+        <div class="row mb-2">
+            <div class="col-1">
+                <span> {{request.date}} </span>
+            </div>
+            <div class="col-2">
+                <span> {{request.destination}} </span>
+            </div>
+            <div class="col-2">
+                <div *ngFor="let dish of request.dishes">
+                    <span> {{dish.name}} </span> 
+                </div>
+            </div>
+            <div class="col-2">
+                <span> {{request.state}} </span>
+            </div>
+            <ngx-select class="col-3" 
+            (select)="statusChanged(request, $event)"
+            [items]="estados"
+            optionValueField="text"
+            optionTextField="text"
+            placeholder="Seleccionar"
+            [allowClear]="false">
+          </ngx-select>
+        </div>
+    </div>
+</div>
