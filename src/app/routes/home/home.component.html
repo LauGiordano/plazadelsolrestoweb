@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row mb-4 d-flex">
         <h1>MENU</h1>
-        <button type="button" class="btn btn-primary btn-sm" style="height: 50%; vertical-align: middle;" (click)="addDish()">Agregar</button>
+        <button type="button" class="btn btn-primary btn-sm ml-2" style="height: 50%; vertical-align: middle;" (click)="addDish()">Agregar</button>
     </div>
     <div *ngFor="let dish of dishes | async">
         <div class="row mb-2">
-            <div class="col-3">
+            <div class="col-3 d-flex">
                 <img src="{{dish.imgURL}}" alt="">
             </div>
             <div class="col-3">

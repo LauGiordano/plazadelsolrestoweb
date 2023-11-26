@@ -4,6 +4,8 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,9 @@ import { HeaderComponent } from './shared/header/header.component';
 import { RequestComponent } from './routes/request/request.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSelectModule } from 'ngx-select-ex';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { AllRequestComponent } from './routes/all-request/all-request.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,8 @@ import { NgxSelectModule } from 'ngx-select-ex';
     DishFormModalComponent,
     LayoutComponent,
     HeaderComponent,
-    RequestComponent
+    RequestComponent,
+    AllRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +46,14 @@ import { NgxSelectModule } from 'ngx-select-ex';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
-    NgxSelectModule
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
+    NgxSelectModule,
+    MatTableModule, 
+    MatPaginatorModule,
+    MatSelectModule,
+    MatSortModule
   ],
   providers: [
     FirestoreService
