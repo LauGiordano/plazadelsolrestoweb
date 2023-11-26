@@ -5,11 +5,13 @@ import { LoginComponent } from './routes/login/login.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { RequestComponent } from './routes/request/request.component';
 import { AllRequestComponent } from './routes/all-request/all-request.component';
+import { homeGuard } from './routes/guards/home.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     component: LayoutComponent,
+    canActivate: [homeGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'pedidos', component: RequestComponent },

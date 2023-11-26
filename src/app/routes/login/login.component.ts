@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { SecurityService } from 'src/app/services/security/security.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit{
     fb : FormBuilder,
     private router: Router,
     private firestoreService: FirestoreService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private securityService: SecurityService
   ) {
     this.loginForm =  fb.group({
       email: new FormControl(null),
@@ -31,9 +33,11 @@ export class LoginComponent implements OnInit{
 
   submit() {
     if (this.loginForm.valid) {
+      const usuario = this.loginForm.value.email;
       this.isUserOk().then((res) => {
         if (res == true) {
           this.toastr.success('Logueando');
+          this.securityService.saveUser(usuario);
           this.router.navigateByUrl('home');
         } else {
           this.toastr.error('Hubo un error con sus credenciales');
