@@ -4,6 +4,7 @@ import { HomeComponent } from './routes/home/home.component';
 import { LoginComponent } from './routes/login/login.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { RequestComponent } from './routes/request/request.component';
+import { AllRequestComponent } from './routes/all-request/all-request.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'pedidos', component: RequestComponent }
+      { path: 'pedidos', component: RequestComponent },
+      { path: 'todos', component: AllRequestComponent }
     ]
   },
   {
