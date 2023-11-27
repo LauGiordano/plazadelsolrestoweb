@@ -13,7 +13,7 @@ const swal = require('sweetalert2');
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit{
-  estados = ['En preparación', 'Enviado', 'Listo para retirar', 'Entregado'];
+  estados = ['En preparación', 'Enviado', 'Listo para retirar', 'Entregado', 'Cancelado'];
   
 
   displayedColumns: string[] = ['date', 'destination', 'dishes', 'state', 'actions'];
