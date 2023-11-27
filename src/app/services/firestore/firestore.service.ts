@@ -39,7 +39,7 @@ export class FirestoreService {
     const requestCollection = collection(this.firestore, 'Request');
     let date = new Date();
     const result = format(date, 'yyyy/MM/dd');
-    const q = query(requestCollection, where('state', 'not-in', ['Cancelado', 'Enviado', 'Entregado']),
+    const q = query(requestCollection, where('state', 'not-in', ['Cancelado', 'Entregado']),
     where("date", "==", result));
     
     const requestSnapshot = await getDocs(q);
