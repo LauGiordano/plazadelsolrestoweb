@@ -1,0 +1,11 @@
+.mat-mdc-form-field {
+    flex-direction: row;
+}
+
+table {
+    background-color: antiquewhite;
+}
+
+.mat-mdc-paginator {
+    background-color: antiquewhite;
+}
