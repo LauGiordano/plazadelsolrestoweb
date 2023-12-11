@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
       width: '400px',
       data: {
         data: dish,
-        callback: (data: any) => this.updateserviceDish(dish)
+        callback: (data: any) => this.updateserviceDish(data)
       },
       disableClose: true
     });

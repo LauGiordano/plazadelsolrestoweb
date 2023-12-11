@@ -47,8 +47,7 @@ export class FirestoreService {
     return dishesList;
   }
 
-  public async updateState(request: any, estado: any) {
-    const data = { state: estado };
+  public async updateState(request: any, estado: string) {
     const requestCollection = collection(this.firestore, 'Request');
     const q = query(requestCollection, where("state", "==", request.state), where("uid", "==", request.uid));
     const requestSnapshot = await getDocs(q);
@@ -56,8 +55,10 @@ export class FirestoreService {
     document = requestSnapshot.docs.at(0)
     if (document == undefined) {
       document = { id: 'nulo'}
+    } else {
+      const data = { state: estado };
+      const docRef = await updateDoc(doc(this.firestore, "Request", document.id), data);
     }
-    const docRef = await updateDoc(doc(this.firestore, "Request", document.id), data);
   }
 
   public async getUser(email: string, password: string) {

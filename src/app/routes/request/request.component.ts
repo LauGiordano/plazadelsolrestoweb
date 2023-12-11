@@ -13,7 +13,7 @@ const swal = require('sweetalert2');
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit{
-  estados = ['En preparación', 'Enviado', 'Entregado'];
+  estados = ['En preparación', 'Enviado', 'Listo para retirar', 'Entregado'];
   
 
   displayedColumns: string[] = ['date', 'destination', 'dishes', 'state', 'actions'];
@@ -59,7 +59,7 @@ export class RequestComponent implements OnInit{
   }
 
   statusChanged(request: any, event: any){
-    this.updateState(request, event);
+    this.updateState(request, event.value);
   }
 
   updateState(request: any, estado: string): void {
@@ -78,7 +78,7 @@ export class RequestComponent implements OnInit{
     });
   }
 
-  updateStateCallback(request: any, estado: any) {
+  updateStateCallback(request: any, estado: string) {
     this.firestoreService.updateState(request, estado)
     .then(() => {
       this.toastr.success('Se cambió el estado correctamente');

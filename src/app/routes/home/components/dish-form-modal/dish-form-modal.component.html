@@ -10,7 +10,6 @@
         <div class="col-9">
           <label>Nombre</label>
           <input
-            [readonly]="!!dataModel && !!dataModel.data ? true : null"
             class="form-control"
             type="text"
             formControlName="name"
@@ -22,7 +21,6 @@
         <div class="col-9">
           <label>Descripción</label>
           <input
-            [readonly]="!!dataModel && !!dataModel.data ? true : null"
             class="form-control"
             type="text"
             formControlName="description"
@@ -45,7 +43,6 @@
         <div class="col-9">
           <label>Imagen</label>
           <input
-            [readonly]="!!dataModel && !!dataModel.data ? true : null"
             class="form-control"
             type="text"
             formControlName="imgURL"
